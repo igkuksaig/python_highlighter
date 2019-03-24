@@ -15,7 +15,11 @@ class HighlightTest(unittest.TestCase):
         """This method is called each time the test routine run"""
         self.app = create_app().test_client()
         # TODO: add the missing test data in this routine
-        self.highlighted_text = b'Sample <mark>text</mark> to be highlighted'
+        # self.highlighted_text = b'Sample <mark>text</mark> to be highlighted'
+
+        self.search_text = 'text'
+        self.text = 'Sample text to be highlighted text'
+        self.highlighted_text = b'Sample <mark>text</mark> to be highlighted <mark>text</mark>'
 
     def tearDown(self):
         """This method is called after the test routine is finished

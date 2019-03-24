@@ -5,6 +5,7 @@ author smith@example.com
 license: MIT"""
 
 from flask import Flask, render_template, request, Markup
+import re
 
 
 def create_app():
@@ -21,32 +22,11 @@ def create_app():
     def process():
         search_text = request.form['search']
         text = request.form['text']
-        highlighted_text = highlight_text(text, search_text)
+        highlighted_text = re.sub(f"({search_text})", r"<mark>\1</mark>", text, flags=re.IGNORECASE)
         result = {'text': text,
                   'highlighted_text': Markup(highlighted_text),
                   }
         return render_template(template_file_name, **result)
 
-    def markup_text(text):
-        """Markup given text.
-        This is supplementary method that helps you to wrap marked text in tags.
-        @:param text - string text to be marked
-        @:return marked text, e.g., <mark>highlighted text</mark>."""
-        result = text
-
-        # TODO: add an implementation
-
-        return result
-
-    def highlight_text(text, expr):
-        """Markup searched string in given text.
-        @:param text - string text to be processed (e.g., 'The sun in the sky')
-        @:param expr - string pattern to be searched in the text (e.g., 'th')
-        @:return marked text, e.g., "<mark>Th</mark>e sun in <mark>th</mark>e sky"."""
-        result = text
-
-        # TODO: add an implementation
-
-        return result
 
     return app
