@@ -14,6 +14,8 @@ class HighlightTest(unittest.TestCase):
     def setUp(self):
         """This method is called each time the test routine run"""
         self.app = create_app().test_client()
+        # TODO: add the missing test data in this routine
+        # self.highlighted_text = b'Sample <mark>text</mark> to be highlighted'
 
         self.search_text = 'text'
         self.text = 'Sample text to be highlighted text'
@@ -22,9 +24,7 @@ class HighlightTest(unittest.TestCase):
     def tearDown(self):
         """This method is called after the test routine is finished
         to clear out the data created in setUp method."""
-        self.search_text = ""
-        self.text = ""
-        self.highlighted_text = ""
+        # TODO: add an implementation
 
     def test_markup_text(self):
         """Test markup process"""
